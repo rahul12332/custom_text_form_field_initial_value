@@ -166,11 +166,14 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-GSTIN Field Example
+
+## 📷 Screenshots
+
+### With GSTIN Field Example
 Name Field Example
 Password Field Example
 
-<img src="https://raw.githubusercontent.com/rahul12332/custom_text_form_field_initial_value/main/assets/custom_form_image.png" width="300"/>
+<img src="https://raw.githubusercontent.com/rahul12332/custom_text_form_field_initial_value/main/assets/custom_form_image.png" width="300" />
 
 
 Contributions are welcome!
@@ -185,5 +188,4 @@ If you find a bug or want to suggest a feature, please open an issue or submit a
 
 ### Code Contributors
 
-[![Contributors](https://contrib.rocks/image?repo=rahul12332/custom_text_form_field_initial_value)](https://github.com/rahul12332/custom_text_form_field_initial_value/graphs/contributors)  
-Amit Chandra | [https://github.com/rahul12332](https://github.com/rahul12332)
+[![Contributors](https://contrib.rocks/image?repo=rahul12332/custom_text_form_field_initial_value)](https://github.com/rahul12332/custom_text_form_field_initial_value/graphs/contributors)
