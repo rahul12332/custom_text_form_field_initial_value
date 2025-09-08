@@ -1,62 +1,38 @@
-# Custom Text Form Field
+# custom_text_form_field_initial_value
+
+[![pub package](https://img.shields.io/pub/v/custom_text_form_field_initial_value.svg)](https://pub.dev/packages/custom_text_form_field_initial_value)
 
 A customizable Flutter TextFormField widget with built-in validation and suffix icon handling.
 
 ## Features
-- Aadhaar Validation
-- Validates a 12-digit Aadhaar number ensuring the user enters a proper format.
 
-- PAN Validation
-- Checks if the input matches the standard PAN format (e.g., ABCDE1234F).
+✅ Aadhaar Validation  
+✅ PAN Validation  
+✅ IFSC Code Validation  
+✅ GSTIN Validation  
+✅ Password Field Support  
+✅ Initial Value Support  
+✅ Dynamic Suffix Icons (Loader, Verified, Failed, Password Toggle)  
+✅ Flexible Validators (PIN Code, Name, State, City, Address, Shop Name)  
+✅ Customizable UI  
+✅ Optional onTap Callback
+✅ Bank account verification
 
-- IFSC Code Validation
-- Ensures the input matches standard IFSC format (XXXX0XXXXXX) for Indian banks.
 
-- GSTIN Validation
-- Validates GSTIN numbers based on Indian GST rules. You can enable it optionally depending on your requirement.
 
-- Password Field Support
-- Supports toggling password visibility with a suffix eye icon, allowing users to show/hide input.
+|             | Android                 | iOS               |
+|-------------|-------------------------|-------------------|
+| **Support** | Android (SDK 21+)       | iOS (13.0+)       |
 
-- Initial Value Support
-- Allows setting an initial value for the TextFormField if you want pre-filled content.
+## Installation
 
-- Dynamic Suffix Icons
-- Shows appropriate icons in the field such as:
+Add the following line to your `pubspec.yaml` under `dependencies`:
 
-- Loader – while bank account verification is in progress.
-
-- Verified – shows a green check if verification succeeds.
-
-- Failed – shows a red cancel icon if verification fails.
-
-- Password toggle – show/hide password for secure fields.
-
-- Flexible Validators
-- Supports additional validations like:
-
-- PIN Code (6 digits)
-
-- Name (alphabet-only input)
-
-- State (3–30 characters, alphabet-only)
-
-- City and Shop Name
-
-- Address
-
-- Customizable UI
-- Rounded borders, content padding, and hint text styling, fully customizable.
-
-- Optional onTap Callback
-- Executes a callback when the field is tapped, useful for custom action
-
-## Usage
-
-```dart
+```yaml
+dependencies:
+  custom_text_form_field_initial_value: ^0.1.1
 import 'package:flutter/material.dart';
 import 'package:custom_text_form_field_initial_value/custom_text_form_field_initial_value.dart';
-
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -66,7 +42,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // Controllers for each field
   final TextEditingController gstinController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController mobileController = TextEditingController();
@@ -91,7 +66,6 @@ class _HomePageState extends State<HomePage> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  // GSTIN Field
                   CustomTextFormField_initialvalue(
                     controller: gstinController,
                     hintText: "Enter your GSTIN",
@@ -99,10 +73,8 @@ class _HomePageState extends State<HomePage> {
                     isGstin: true,
                     borderColor: Colors.black,
                   ),
-
                   const SizedBox(height: 16),
 
-                  // Name Field
                   CustomTextFormField_initialvalue(
                     controller: nameController,
                     hintText: "Enter your Name",
@@ -110,10 +82,8 @@ class _HomePageState extends State<HomePage> {
                     isName: true,
                     borderColor: Colors.black,
                   ),
-
                   const SizedBox(height: 16),
 
-                  // Mobile Number Field
                   CustomTextFormField_initialvalue(
                     controller: mobileController,
                     hintText: "Enter Mobile Number",
@@ -121,10 +91,8 @@ class _HomePageState extends State<HomePage> {
                     isMobileNo: true,
                     borderColor: Colors.black,
                   ),
-
                   const SizedBox(height: 16),
 
-                  // Password Field
                   CustomTextFormField_initialvalue(
                     controller: passwordController,
                     hintText: "Enter Password",
@@ -132,10 +100,8 @@ class _HomePageState extends State<HomePage> {
                     isPassword: true,
                     borderColor: Colors.black,
                   ),
-
                   const SizedBox(height: 16),
 
-                  // PIN Code Field
                   CustomTextFormField_initialvalue(
                     controller: pinCodeController,
                     hintText: "Enter PIN Code",
@@ -143,10 +109,8 @@ class _HomePageState extends State<HomePage> {
                     isPinCode: true,
                     borderColor: Colors.black,
                   ),
-
                   const SizedBox(height: 16),
 
-                  // State Field
                   CustomTextFormField_initialvalue(
                     controller: stateController,
                     hintText: "Enter State",
@@ -154,10 +118,8 @@ class _HomePageState extends State<HomePage> {
                     isState: true,
                     borderColor: Colors.black,
                   ),
-
                   const SizedBox(height: 16),
 
-                  // Address Field
                   CustomTextFormField_initialvalue(
                     controller: addressController,
                     hintText: "Enter Address",
@@ -165,10 +127,8 @@ class _HomePageState extends State<HomePage> {
                     isAddress: true,
                     borderColor: Colors.black,
                   ),
-
                   const SizedBox(height: 16),
 
-                  // Shop Name Field
                   CustomTextFormField_initialvalue(
                     controller: shopController,
                     hintText: "Enter Shop Name",
@@ -176,10 +136,8 @@ class _HomePageState extends State<HomePage> {
                     isShopName: true,
                     borderColor: Colors.black,
                   ),
-
                   const SizedBox(height: 16),
 
-                  // City Field
                   CustomTextFormField_initialvalue(
                     controller: cityController,
                     hintText: "Enter City",
@@ -187,14 +145,11 @@ class _HomePageState extends State<HomePage> {
                     isCity: true,
                     borderColor: Colors.black,
                   ),
-
                   const SizedBox(height: 24),
 
-                  // Submit Button
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        // All fields are valid
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text("Form submitted successfully")),
                         );
@@ -211,5 +166,24 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+GSTIN Field Example
+Name Field Example
+Password Field Example
 
-# custom_text_form_field_initial_value
+<img src="https://raw.githubusercontent.com/rahul12332/custom_text_form_field_initial_value/main/assets/custom_form_image.png" width="300"/>
+
+
+Contributions are welcome!
+If you find a bug or want to suggest a feature, please open an issue or submit a pull request.
+👉 Contribute on GitHub
+
+🤝 Contributing
+
+Contributions are welcome!  
+If you find a bug or want to suggest a feature, please open an issue or submit a pull request.  
+👉 [Contribute on GitHub](https://github.com/rahul12332/custom_text_form_field_initial_value)
+
+### Code Contributors
+
+[![Contributors](https://contrib.rocks/image?repo=rahul12332/custom_text_form_field_initial_value)](https://github.com/rahul12332/custom_text_form_field_initial_value/graphs/contributors)  
+Amit Chandra | [https://github.com/rahul12332](https://github.com/rahul12332)

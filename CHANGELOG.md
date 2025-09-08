@@ -1,3 +1,14 @@
+## 0.1.2 - 2025-09-08
+
+- Added README images/screenshots.
+- Updated and adding bank account validation
+
+## 0.1.1 - 2025-09-07
+
+- Added README images/screenshots.
+- Updated documentation comments.
+- Optional border color handling improvements.
+
 ## 0.1.0 - 2025-09-07
 
 - Updated README.md with images and GitHub profile link.

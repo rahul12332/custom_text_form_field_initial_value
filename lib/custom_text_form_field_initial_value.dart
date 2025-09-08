@@ -2,29 +2,78 @@ import 'package:flutter/material.dart';
 import 'regax_validator.dart';
 import 'app_color.dart';
 
+/// A customizable Flutter TextFormField widget with built-in validations,
+/// optional initial value, and password visibility toggle.
+///
+/// Supports validations for:
+/// - GSTIN
+/// - Mobile number
+/// - Password
+/// - PIN Code
+/// - Name, State, City, Shop Name, Address
+///
+/// Also allows custom border color and optional onTap callback.
 class CustomTextFormField_initialvalue extends StatefulWidget {
+  /// Controller for the TextFormField
   final TextEditingController? controller;
+
+  /// Optional initial value for the field
   final String? initialValue;
+
+  /// Hint text displayed inside the field
   final String hintText;
+
+  /// Keyboard type for the field
   final TextInputType keyboardType;
+
+  /// Obscure text for password fields
   final bool obscureText;
+
+  /// Minimum input length
   final int? minLength;
+
+  /// Maximum input length
   final int? maxLength;
+
+  /// Enable password validation and visibility toggle
   final bool isPassword;
+
+  /// Enable Indian mobile number validation
   final bool isMobileNo;
-  final bool isGstin; // ✅ Only GSTIN validation
+
+  /// Enable GSTIN validation
+  final bool isGstin;
+
+  /// Optional callback when the field is tapped
   final VoidCallback? onTap;
 
-  // Optional border color
+  /// Optional border color for the field
   final Color? borderColor;
 
+  /// Show loader for verification (optional)
   final bool showLoader;
+
+  /// Enable PIN code validation
   final bool isPinCode;
+
+  /// Enable state name validation
   final bool isState;
+
+  /// Enable name validation
   final bool isName;
+
+  /// Enable address validation
   final bool isAddress;
+
+  /// Enable shop name validation
   final bool isShopName;
+
+  /// Enable city name validation
   final bool isCity;
+
+  /// Enable to bank account verification
+  final bool isBank;
+
 
   const CustomTextFormField_initialvalue({
     Key? key,
@@ -39,7 +88,7 @@ class CustomTextFormField_initialvalue extends StatefulWidget {
     this.isMobileNo = false,
     this.isGstin = false,
     this.onTap,
-    this.borderColor, // 👈 optional
+    this.borderColor,
     this.showLoader = false,
     this.isPinCode = false,
     this.isState = false,
@@ -47,6 +96,8 @@ class CustomTextFormField_initialvalue extends StatefulWidget {
     this.isAddress = false,
     this.isShopName = false,
     this.isCity = false,
+    this.isBank = false,
+
   }) : super(key: key);
 
   @override
@@ -54,6 +105,9 @@ class CustomTextFormField_initialvalue extends StatefulWidget {
       _CustomTextFormField_initialvalueState();
 }
 
+/// State class for [CustomTextFormField_initialvalue].
+///
+/// Manages password visibility toggle and sets initial value if provided.
 class _CustomTextFormField_initialvalueState
     extends State<CustomTextFormField_initialvalue> {
   bool _obscurePassword = true;
@@ -68,6 +122,7 @@ class _CustomTextFormField_initialvalueState
 
   @override
   Widget build(BuildContext context) {
+    // Set initial value if provided
     if (widget.controller != null &&
         widget.initialValue != null &&
         widget.controller!.text.isEmpty) {
@@ -89,21 +144,17 @@ class _CustomTextFormField_initialvalueState
           fontWeight: FontWeight.w400,
           color: AppColor.hintColor,
         ),
-        contentPadding:
-        const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+        contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
         border: OutlineInputBorder(
-          borderSide:
-          BorderSide(color: widget.borderColor ?? AppColor.boderColor),
+          borderSide: BorderSide(color: widget.borderColor ?? AppColor.boderColor),
           borderRadius: BorderRadius.circular(16.0),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide:
-          BorderSide(color: widget.borderColor ?? AppColor.boderColor),
+          borderSide: BorderSide(color: widget.borderColor ?? AppColor.boderColor),
           borderRadius: BorderRadius.circular(16.0),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide:
-          BorderSide(color: widget.borderColor ?? AppColor.boderColor),
+          borderSide: BorderSide(color: widget.borderColor ?? AppColor.boderColor),
           borderRadius: BorderRadius.circular(16.0),
         ),
         errorBorder: OutlineInputBorder(
@@ -171,7 +222,9 @@ class _CustomTextFormField_initialvalueState
         if (widget.isCity && !RegexValidator.isValidCity(sanitizedValue)) {
           return 'Enter a valid city name';
         }
-
+        if(widget.isBank && !RegexValidator.isValidBankAccount(sanitizedValue)){
+          return "Enter a valid bank account";
+        }
         return null;
       },
     );
