@@ -146,6 +146,14 @@ class _HomePageState extends State<HomePage> {
                     borderColor: Colors.black,
                   ),
                   const SizedBox(height: 24),
+                  CustomTextFormField(hintText: 'Enter your name', keyboardType: TextInputType.text,borderColor: Colors.red,
+                  enabledBorderColor: Colors.green,
+                  borderWidth:10,
+                  label: "UserName",
+                  lableColor: Colors.red,
+                  showLable: true,
+                  borderRadious: 10,
+                  isName: true,
 
                   ElevatedButton(
                     onPressed: () {

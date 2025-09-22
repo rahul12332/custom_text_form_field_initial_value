@@ -73,9 +73,34 @@ class CustomTextFormField_initialvalue extends StatefulWidget {
 
   /// Enable to bank account verification
   final bool isBank;
+  /// Enable the enabled border color of form field
+  Color enabledBorderColor;
+
+  /// Enable the focusedBorderColor
+  Color focusedBorderColor;
+
+  /// Implement the border width of border of formfield
+  double borderWidth;
+
+  /// Enabled the label of formfield
+  final String? label;// ✅ nullable
+
+  /// when show label is true then showing the label
+  bool showLabel;
+
+  /// Changing the label color of form field
+  Color labelColor;
 
 
-  const CustomTextFormField_initialvalue({
+  /// it will help to enable outline border color
+  Color OutlineInputBorder;
+
+  /// it will enable the border radious of the form field
+  double borderRadious;
+
+
+
+   CustomTextFormField_initialvalue({
     Key? key,
     this.controller,
     this.initialValue,
@@ -97,6 +122,15 @@ class CustomTextFormField_initialvalue extends StatefulWidget {
     this.isShopName = false,
     this.isCity = false,
     this.isBank = false,
+    this.enabledBorderColor= AppColor.boderColor,
+    this.focusedBorderColor = AppColor.boderColor,
+    this.borderWidth = 1,
+    this.label,
+    this.showLabel= false,
+    this.labelColor= Colors.red,
+    this.borderRadious=16,
+     this.OutlineInputBorder= AppColor.boderColor
+
 
   }) : super(key: key);
 
@@ -138,7 +172,13 @@ class _CustomTextFormField_initialvalueState
       obscureText: widget.isPassword ? _obscurePassword : widget.obscureText,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
+        labelText: widget.showLabel ? widget.label : null, // ✅ Floating label
         hintText: widget.hintText,
+        labelStyle:  TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w400,
+          color: widget.labelColor,
+        ),
         hintStyle: const TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w400,
@@ -146,20 +186,20 @@ class _CustomTextFormField_initialvalueState
         ),
         contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
         border: OutlineInputBorder(
-          borderSide: BorderSide(color: widget.borderColor ?? AppColor.boderColor),
-          borderRadius: BorderRadius.circular(16.0),
+          borderSide: BorderSide(color: widget.OutlineInputBorder, width: widget.borderWidth),
+          borderRadius: BorderRadius.circular(widget.borderRadious),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: widget.borderColor ?? AppColor.boderColor),
-          borderRadius: BorderRadius.circular(16.0),
+          borderSide: BorderSide(color: widget.focusedBorderColor),
+          borderRadius: BorderRadius.circular(widget.borderRadious),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: widget.borderColor ?? AppColor.boderColor),
-          borderRadius: BorderRadius.circular(16.0),
+          borderSide: BorderSide(color: widget.enabledBorderColor),
+          borderRadius: BorderRadius.circular(widget.borderRadious),
         ),
         errorBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.red),
-          borderRadius: BorderRadius.circular(16.0),
+          borderRadius: BorderRadius.circular(widget.borderRadious),
         ),
         suffixIcon: widget.isPassword
             ? IconButton(

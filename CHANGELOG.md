@@ -1,3 +1,8 @@
+## 0.1.4 
+- adding border radius 
+- adding label 
+- adding color focoused enabled outline border color
+
 ## 0.1.3 - 2025-09-08
 
 - Adding Screenshots README and contributing github
