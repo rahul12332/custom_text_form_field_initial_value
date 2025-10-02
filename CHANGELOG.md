@@ -1,3 +1,8 @@
+## 0.1.1
+- adding background color
+- adding date time functionality
+
+
 ## 0.1.4 
 - adding border radius 
 - adding label 

@@ -139,6 +139,7 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(height: 16),
 
                   CustomTextFormField_initialvalue(
+                    backgroundColor: Colors.orange,
                     controller: cityController,
                     hintText: "Enter City",
                     keyboardType: TextInputType.text,
@@ -154,6 +155,70 @@ class _HomePageState extends State<HomePage> {
                   showLable: true,
                   borderRadious: 10,
                   isName: true,
+                  
+                              Row(
+              children: [
+                Expanded(
+                  child: CustomTextFormField_initialvalue(
+
+                    controller: _fromDateController,
+                    label: "From date",
+                    hintText: "Select From Date",
+                    keyboardType: TextInputType.datetime,
+                    isFromDate: true,
+                    fromDate: _fromDate,
+                    onTap: () async {
+                      DateTime initialDate = _fromDate ?? DateTime.now();
+                      DateTime? picked = await showDatePicker(
+                        context: context,
+                        initialDate: initialDate,
+                        firstDate: DateTime(2000),
+                        lastDate: DateTime(2100),
+                      );
+                      if (picked != null) {
+                        _fromDate = picked;
+                        _fromDateController.text = picked.toLocal().toString().split(' ')[0];
+                        setState(() {});
+                      }
+                    },
+                  ),
+                ),
+                const SizedBox(width: 10), // this id date time 
+                Expanded(
+                  child: CustomTextFormField_initialvalue(
+                    controller: _toDateController,
+                    hintText: "Select To Date",
+                    keyboardType: TextInputType.datetime,
+                    isToDate: true,
+                    fromDate: _fromDate,
+                    onTap: () async {
+                      DateTime initialDate = _toDate ?? _fromDate ?? DateTime.now();
+                      DateTime? picked = await showDatePicker(
+                        context: context,
+                        initialDate: initialDate,
+                        firstDate: _fromDate ?? DateTime(2000),
+                        lastDate: DateTime(2100),
+                      );
+                      if (picked != null) {
+                        if (_fromDate != null && picked.isBefore(_fromDate!)) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("To Date cannot be earlier than From Date"),
+                              duration: Duration(seconds: 2),
+                            ),
+                          );
+                          return;
+                        }
+                        _toDate = picked;
+                        _toDateController.text = picked.toLocal().toString().split(' ')[0];
+                        setState(() {});
+                      }
+                    },
+                  ),
+                ),
+              ],
+            ),
+
 
                   ElevatedButton(
                     onPressed: () {

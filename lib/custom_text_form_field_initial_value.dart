@@ -73,7 +73,19 @@ class CustomTextFormField_initialvalue extends StatefulWidget {
 
   /// Enable to bank account verification
   final bool isBank;
+
+  /// checking date time fromdate
+  final bool isFromDate;
+
+  /// checking date time toDate
+
+  final bool isToDate;
+
+  // Optional reference to fromDate
+  final DateTime? fromDate;
+
   /// Enable the enabled border color of form field
+
   Color enabledBorderColor;
 
   /// Enable the focusedBorderColor
@@ -97,6 +109,14 @@ class CustomTextFormField_initialvalue extends StatefulWidget {
 
   /// it will enable the border radious of the form field
   double borderRadious;
+
+  /// set background color of form field
+
+  final Color? backgroundColor;
+
+  /// it will set hint color
+
+  final Color? hintColor;
 
 
 
@@ -129,7 +149,12 @@ class CustomTextFormField_initialvalue extends StatefulWidget {
     this.showLabel= false,
     this.labelColor= Colors.red,
     this.borderRadious=16,
-     this.OutlineInputBorder= AppColor.boderColor
+     this.OutlineInputBorder= AppColor.boderColor,
+     this.backgroundColor,
+     this.hintColor,
+     this.isFromDate = false,
+     this.isToDate = false,
+     this.fromDate,
 
 
   }) : super(key: key);
@@ -145,7 +170,14 @@ class CustomTextFormField_initialvalue extends StatefulWidget {
 class _CustomTextFormField_initialvalueState
     extends State<CustomTextFormField_initialvalue> {
   bool _obscurePassword = true;
+  DateTime? _fromDate;
+  DateTime? _toDate;
 
+  @override
+  void initState() {
+    _fromDate = widget.fromDate;
+    super.initState();
+  }
   @override
   void dispose() {
     if (widget.controller == null) {
@@ -153,7 +185,17 @@ class _CustomTextFormField_initialvalueState
     }
     super.dispose();
   }
-
+  void validateDatesFromController() {
+    if (_fromDate != null && _toDate != null && _toDate!.isBefore(_fromDate!)) {
+      widget.controller?.text = '';
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('To Date cannot be earlier than From Date'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+    }
+  }
   @override
   Widget build(BuildContext context) {
     // Set initial value if provided
@@ -166,23 +208,55 @@ class _CustomTextFormField_initialvalueState
     }
 
     return TextFormField(
-      onTap: widget.onTap,
-      controller: widget.controller,
+      onTap: () async {
+        if (widget.isFromDate || widget.isToDate) {
+          DateTime initialDate = DateTime.now();
+          if (widget.isToDate && _fromDate != null) {
+            initialDate = _fromDate!;
+          }
+
+          DateTime? pickedDate = await showDatePicker(
+            context: context,
+            initialDate: initialDate,
+            firstDate: DateTime(2000),
+            lastDate: DateTime(2100),
+          );
+
+          if (pickedDate != null) {
+            widget.controller?.text = pickedDate.toLocal().toString().split(' ')[0];
+
+            if (widget.isFromDate) {
+              _fromDate = pickedDate;
+            } else if (widget.isToDate) {
+              _toDate = pickedDate;
+            }
+
+            validateDatesFromController();
+            setState(() {});
+          }
+        }
+
+        if (widget.onTap != null) {
+          widget.onTap!();
+        }
+      },      controller: widget.controller,
       keyboardType: widget.keyboardType,
       obscureText: widget.isPassword ? _obscurePassword : widget.obscureText,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         labelText: widget.showLabel ? widget.label : null, // ✅ Floating label
         hintText: widget.hintText,
+        fillColor: widget.backgroundColor?? Colors.white,
+        filled: true,
         labelStyle:  TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w400,
           color: widget.labelColor,
         ),
-        hintStyle: const TextStyle(
+        hintStyle: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w400,
-          color: AppColor.hintColor,
+          color:  widget.hintColor??     AppColor.hintColor,
         ),
         contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
         border: OutlineInputBorder(
@@ -269,4 +343,5 @@ class _CustomTextFormField_initialvalueState
       },
     );
   }
+
 }

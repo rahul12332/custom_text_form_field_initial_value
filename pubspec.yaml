@@ -1,6 +1,6 @@
 name: custom_text_form_field_initial_value
 description: "A customizable Flutter TextFormField widget with validations and optional initial value support."
-version: 0.1.4
+version: 0.1.5
 homepage: https://github.com/rahul12332
 repository: https://github.com/rahul12332/custom_text_form_field_initial_value
 contributors:
