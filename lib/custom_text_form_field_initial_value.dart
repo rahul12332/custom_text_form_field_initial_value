@@ -13,7 +13,8 @@ import 'app_color.dart';
 /// - Name, State, City, Shop Name, Address
 ///
 /// Also allows custom border color and optional onTap callback.
-class CustomTextFormField_initialvalue extends StatefulWidget {
+@immutable
+class CustomTextFormFieldInitialValue extends StatefulWidget {
   /// Controller for the TextFormField
   final TextEditingController? controller;
 
@@ -86,29 +87,29 @@ class CustomTextFormField_initialvalue extends StatefulWidget {
 
   /// Enable the enabled border color of form field
 
-  Color enabledBorderColor;
+  final Color enabledBorderColor;
 
   /// Enable the focusedBorderColor
-  Color focusedBorderColor;
+ final Color focusedBorderColor;
 
   /// Implement the border width of border of formfield
-  double borderWidth;
+  final double borderWidth;
 
   /// Enabled the label of formfield
   final String? label;// ✅ nullable
 
   /// when show label is true then showing the label
-  bool showLabel;
+  final bool showLabel;
 
   /// Changing the label color of form field
-  Color labelColor;
+ final Color labelColor;
 
 
   /// it will help to enable outline border color
-  Color OutlineInputBorder;
+ final Color OutlineInputBorder;
 
   /// it will enable the border radious of the form field
-  double borderRadious;
+ final double borderRadious;
 
   /// set background color of form field
 
@@ -120,7 +121,7 @@ class CustomTextFormField_initialvalue extends StatefulWidget {
 
 
 
-   CustomTextFormField_initialvalue({
+  CustomTextFormFieldInitialValue({
     Key? key,
     this.controller,
     this.initialValue,
@@ -160,15 +161,15 @@ class CustomTextFormField_initialvalue extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<CustomTextFormField_initialvalue> createState() =>
-      _CustomTextFormField_initialvalueState();
+  State<CustomTextFormFieldInitialValue> createState() =>
+      _CustomTextFormFieldInitialValue();
 }
 
 /// State class for [CustomTextFormField_initialvalue].
 ///
 /// Manages password visibility toggle and sets initial value if provided.
-class _CustomTextFormField_initialvalueState
-    extends State<CustomTextFormField_initialvalue> {
+class _CustomTextFormFieldInitialValue
+    extends State<CustomTextFormFieldInitialValue> {
   bool _obscurePassword = true;
   DateTime? _fromDate;
   DateTime? _toDate;
