@@ -92,69 +92,37 @@ class _HomePageState extends State<HomePage> {
                     borderColor: Colors.black,
                   ),
                   const SizedBox(height: 16),
+       
+       //// adding animation with order or position 
+       
+                  Column(
+           children: [
+    CustomTextFormFieldInitialValue(
+      hintText: "First Name",
+      keyboardType: TextInputType.text,
+      enableAnimation: true,
+      animationDirection: AnimationDirection.left,
+      animationOrder: 1,
+          ),
+          CustomTextFormFieldInitialValue(
+      hintText: "Last Name",
+      keyboardType: TextInputType.text,
+      enableAnimation: true,
+      animationDirection: AnimationDirection.right,
+      animationOrder: 2,
+        ),
+    CustomTextFormFieldInitialValue(
+      hintText: "Email",
+      keyboardType: TextInputType.emailAddress,
+      enableAnimation: true,
+      animationDirection: AnimationDirection.up,
+      animationOrder: 3,
+    ),
+  ],
+);
 
-                  CustomTextFormField_initialvalue(
-                    controller: passwordController,
-                    hintText: "Enter Password",
-                    keyboardType: TextInputType.text,
-                    isPassword: true,
-                    borderColor: Colors.black,
-                  ),
-                  const SizedBox(height: 16),
 
-                  CustomTextFormField_initialvalue(
-                    controller: pinCodeController,
-                    hintText: "Enter PIN Code",
-                    keyboardType: TextInputType.number,
-                    isPinCode: true,
-                    borderColor: Colors.black,
-                  ),
-                  const SizedBox(height: 16),
-
-                  CustomTextFormField_initialvalue(
-                    controller: stateController,
-                    hintText: "Enter State",
-                    keyboardType: TextInputType.text,
-                    isState: true,
-                    borderColor: Colors.black,
-                  ),
-                  const SizedBox(height: 16),
-
-                  CustomTextFormField_initialvalue(
-                    controller: addressController,
-                    hintText: "Enter Address",
-                    keyboardType: TextInputType.text,
-                    isAddress: true,
-                    borderColor: Colors.black,
-                  ),
-                  const SizedBox(height: 16),
-
-                  CustomTextFormField_initialvalue(
-                    controller: shopController,
-                    hintText: "Enter Shop Name",
-                    keyboardType: TextInputType.text,
-                    isShopName: true,
-                    borderColor: Colors.black,
-                  ),
-                  const SizedBox(height: 16),
-
-                  CustomTextFormField_initialvalue(
-                    backgroundColor: Colors.orange,
-                    controller: cityController,
-                    hintText: "Enter City",
-                    keyboardType: TextInputType.text,
-                    isCity: true,
-                    borderColor: Colors.black,
-                  ),
-                  const SizedBox(height: 24),
-                  CustomTextFormField(hintText: 'Enter your name', keyboardType: TextInputType.text,borderColor: Colors.red,
-                  enabledBorderColor: Colors.green,
-                  borderWidth:10,
-                  label: "UserName",
-                  lableColor: Colors.red,
-                  showLable: true,
-                  borderRadious: 10,
-                  isName: true,
+                 
                   
                               Row(
               children: [

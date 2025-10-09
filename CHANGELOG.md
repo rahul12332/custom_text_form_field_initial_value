@@ -1,3 +1,7 @@
+## 0.1.6
+- adding first name validation
+- adding animation formfield left right up down with order
+
 ## 0.1.5
 - adding background color
 - adding date time functionality

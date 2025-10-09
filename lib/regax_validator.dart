@@ -99,5 +99,28 @@ class RegexValidator {
     RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
     return regex.hasMatch(email.trim());
   }
+
+  /// this validate first name of user (Name format )
+  static bool isValidFirstName(String name) {
+    final RegExp regex = RegExp(r"^[A-Za-z]+(['-]?[A-Za-z]+)*$");
+    String trimmedName = name.trim();
+
+    return regex.hasMatch(trimmedName) &&
+        trimmedName.length >= 2 &&
+        trimmedName.length <= 40 &&
+        !trimmedName.contains(' '); // Explicitly check for spaces
+  }
+
+  /// this van validate last name of user(Lastname format)
+  static bool isValidLastName(String name) {
+    final RegExp regex = RegExp(r"^[A-Za-z]+(['-]?[A-Za-z]+)*$");
+    String trimmedName = name.trim();
+
+    return regex.hasMatch(trimmedName) &&
+        trimmedName.length >= 2 &&
+        trimmedName.length <= 40 &&
+        !trimmedName.contains(' '); // No spaces allowed
+  }
+
 }
 ////////ddddd
