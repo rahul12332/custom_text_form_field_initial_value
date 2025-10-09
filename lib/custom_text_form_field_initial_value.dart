@@ -171,8 +171,8 @@ class _CustomTextFormFieldInitialValue
         beginOffset = const Offset(0.0, -1.0);
         break;
       case AnimationDirection.left:
-      default:
         beginOffset = const Offset(-1.0, 0.0);
+        break;
     }
 
     // 🎯 Setup Tween for movement from 'beginOffset' to original position
