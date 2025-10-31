@@ -91,6 +91,11 @@ class CustomTextFormFieldInitialValue extends StatefulWidget {
   final bool isTurnOver;
   final bool isGender;
 
+  // verifying email date of birth
+  final bool isEmail;
+  final bool isDOB;
+
+
   CustomTextFormFieldInitialValue({
     Key? key,
     this.controller,
@@ -141,6 +146,8 @@ class CustomTextFormFieldInitialValue extends StatefulWidget {
     this.isGender = false,
     this.isIfscCode = false,
     this.isTurnOver = false,
+    this.isEmail = false,
+    this.isDOB  = false
   }) : super(key: key);
 
   @override
@@ -387,6 +394,10 @@ class _CustomTextFormFieldInitialValue
         if(widget.isGender && !RegexValidator.isValidGender(trimmed)){
           return "Enter a valid gender";
         }
+        if(widget.isEmail && !RegexValidator.isValidEmail(trimmed)){
+          return "Enter valid email";
+        }
+
 
         return null; // ✅ All validations passed
       },

@@ -152,6 +152,12 @@ class RegexValidator {
     RegExp(r'^(male|female|other)$', caseSensitive: false);
     return regex.hasMatch(gender.trim());
   }
+  static bool isValidDob(String dob) {
+    final RegExp regex = RegExp(
+      r'^(0[1-9]|[12][0-9]|3[01])[\/\-](0[1-9]|1[0-2])[\/\-](19|20)\d{2}$',
+    );
+    return regex.hasMatch(dob.trim());
+  }
 
 }
 ////////ddddd

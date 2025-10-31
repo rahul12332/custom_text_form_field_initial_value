@@ -1,3 +1,7 @@
+## 0.1.8
+- DOB validation
+- Email validation
+
 ## 0.1.7
 - Gender validation
 - TurnOver validation

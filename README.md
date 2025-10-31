@@ -19,6 +19,9 @@ A customizable Flutter TextFormField widget with built-in validation and suffix 
 ✅ Bank account Validation
 ✅ Gender Validation
 ✅ BankAccountType Validation
+✅ Email Validation
+✅ DOB Validation
+
 
 
 
