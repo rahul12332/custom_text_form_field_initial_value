@@ -16,7 +16,12 @@ A customizable Flutter TextFormField widget with built-in validation and suffix 
 ✅ Flexible Validators (PIN Code, Name, State, City, Address, Shop Name)  
 ✅ Customizable UI  
 ✅ Optional onTap Callback
-✅ Bank account verification
+✅ Bank account Validation
+✅ Gender Validation
+✅ BankAccountType Validation
+
+
+
 
 
 

@@ -121,6 +121,37 @@ class RegexValidator {
         trimmedName.length <= 40 &&
         !trimmedName.contains(' '); // No spaces allowed
   }
+  static bool isValidAadhaarCard(String aadhaar) {
+    final RegExp regex = RegExp(r'^[2-9]{1}[0-9]{11}$');
+    return regex.hasMatch(aadhaar.trim());
+  }
+  static bool isValidPanCard(String pan) {
+    final RegExp regex = RegExp(r'^[A-Z]{5}[0-9]{4}[A-Z]{1}$');
+    return regex.hasMatch(pan.toUpperCase());
+  }
+  static bool isValidBankAccountNumber(String account) {
+    final RegExp regex = RegExp(r'^\d{10,18}$');
+    return regex.hasMatch(account.trim());
+  }
+  static bool isValidIfscCode(String ifsc) {
+    final RegExp regex = RegExp(r'^[A-Z]{4}0[A-Z0-9]{6}$');
+    return regex.hasMatch(ifsc.toUpperCase());
+  }
+  static bool isValidAccountType(String type) {
+    final RegExp regex = RegExp(r'^(savings|current|salary|fixed|recurring)$',
+        caseSensitive: false);
+    return regex.hasMatch(type.trim());
+  }
+  static bool isValidTurnover(String turnover) {
+    final RegExp regex = RegExp(r'^[0-9]+(\.[0-9]{1,2})?\s?(lakh|crore|rs|₹)?$',
+        caseSensitive: false);
+    return regex.hasMatch(turnover.trim());
+  }
+  static bool isValidGender(String gender) {
+    final RegExp regex =
+    RegExp(r'^(male|female|other)$', caseSensitive: false);
+    return regex.hasMatch(gender.trim());
+  }
 
 }
 ////////ddddd

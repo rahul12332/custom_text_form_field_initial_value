@@ -1,3 +1,8 @@
+## 0.1.7
+- Gender validation
+- TurnOver validation
+- Bank Account type validation
+
 ## 0.1.6
 - adding first name validation
 - adding animation formfield left right up down with order

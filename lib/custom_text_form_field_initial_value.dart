@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'regax_validator.dart';
 import 'app_color.dart';
 
+/// Author Amit Chandra
 /// Enum representing the direction of text field entry animation.
 /// Helps keep direction options type-safe and IDE-suggested.
 enum AnimationDirection { left, right, up, down }
@@ -79,7 +80,16 @@ class CustomTextFormFieldInitialValue extends StatefulWidget {
   // ⚡ Miscellaneous
   // ------------------------------------------------------------
   final bool showLoader;                   // Option to show loader UI.
-  final VoidCallback? onTap;               // Custom onTap callback (used for date fields).
+  final VoidCallback? onTap;// Custom onTap callback (used for date fields).
+
+  // adharCard panCard bankAccount regax validation IFSC code check Account Type turnover gender
+  
+  final bool isAdharCard;
+  final bool isPanCard;
+  final bool isIfscCode;
+  final bool isBankAccountType;
+  final bool isTurnOver;
+  final bool isGender;
 
   CustomTextFormFieldInitialValue({
     Key? key,
@@ -125,6 +135,12 @@ class CustomTextFormFieldInitialValue extends StatefulWidget {
     this.animationDuration = const Duration(milliseconds: 500),
     this.animationOrder = 1,
     this.baseDelay = const Duration(milliseconds: 300),
+    this.isAdharCard = false,
+    this.isPanCard = false,
+    this.isBankAccountType = false,
+    this.isGender = false,
+    this.isIfscCode = false,
+    this.isTurnOver = false,
   }) : super(key: key);
 
   @override
@@ -358,6 +374,18 @@ class _CustomTextFormFieldInitialValue
         if (widget.isBank &&
             !RegexValidator.isValidBankAccount(trimmed)) {
           return "Enter a valid bank account";
+        }
+        if(widget.isAdharCard && !RegexValidator.isValidAadhaar(trimmed)){
+          return "Enter a valid adhar card";
+        }
+        if(widget.isPanCard && !RegexValidator.isValidPan(trimmed)){
+          return "Enter a valid pan card number";
+        }
+        if(widget.isBankAccountType && !RegexValidator.isValidBankAccount(trimmed)){
+          return "Enter a valid bank account number";
+        }
+        if(widget.isGender && !RegexValidator.isValidGender(trimmed)){
+          return "Enter a valid gender";
         }
 
         return null; // ✅ All validations passed
