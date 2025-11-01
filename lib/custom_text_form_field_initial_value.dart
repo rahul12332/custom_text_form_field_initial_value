@@ -83,6 +83,10 @@ class CustomTextFormFieldInitialValue extends StatefulWidget {
   final VoidCallback? onTap;// Custom onTap callback (used for date fields).
 
   // adharCard panCard bankAccount regax validation IFSC code check Account Type turnover gender
+
+  // ready only feature introduce in 0.1.9 when user enable this function the controller value does not editable by default it will be false
+  final bool readOnly;
+
   
   final bool isAdharCard;
   final bool isPanCard;
@@ -147,7 +151,8 @@ class CustomTextFormFieldInitialValue extends StatefulWidget {
     this.isIfscCode = false,
     this.isTurnOver = false,
     this.isEmail = false,
-    this.isDOB  = false
+    this.isDOB  = false,
+    this.readOnly = false
   }) : super(key: key);
 
   @override
@@ -279,6 +284,7 @@ class _CustomTextFormFieldInitialValue
         // 🪄 Execute custom onTap callback if provided
         widget.onTap?.call();
       },
+      readOnly: widget.readOnly,
       controller: widget.controller,
       keyboardType: widget.keyboardType,
       obscureText: widget.isPassword ? _obscurePassword : widget.obscureText,
