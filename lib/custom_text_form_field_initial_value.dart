@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'regax_validator.dart';
 import 'app_color.dart';
 
@@ -6,6 +7,7 @@ import 'app_color.dart';
 /// Enum representing the direction of text field entry animation.
 /// Helps keep direction options type-safe and IDE-suggested.
 enum AnimationDirection { left, right, up, down }
+enum PrefixImageType{ svg, png, none}
 
 /// ---------------------------------------------------------------------------
 /// 🧩 CustomTextFormFieldInitialValue
@@ -99,6 +101,17 @@ class CustomTextFormFieldInitialValue extends StatefulWidget {
   final bool isEmail;
   final bool isDOB;
 
+  // prefix image initilization for custom aading prefix image and user alos set prefix text
+
+  final String? prefixImage; // its define image and its path
+  final String? prefixText; // its define text which we set into the textfield
+  final PrefixImageType prefixType; // it define type of image
+  final TextStyle? prefixTextStyle; // its define text style of prefix text
+  final double prefixImageSize; // its define the image size
+  final double prefixPadding; // its define the prefix icon padding for image text
+
+
+
 
   CustomTextFormFieldInitialValue({
     Key? key,
@@ -152,7 +165,15 @@ class CustomTextFormFieldInitialValue extends StatefulWidget {
     this.isTurnOver = false,
     this.isEmail = false,
     this.isDOB  = false,
-    this.readOnly = false
+    this.readOnly = false,
+
+    // prefix
+    this.prefixImage,
+    this.prefixText,
+    this.prefixType = PrefixImageType.none,
+    this.prefixTextStyle,
+    this.prefixImageSize = 20.0,
+    this.prefixPadding = 8.0
   }) : super(key: key);
 
   @override
@@ -323,6 +344,7 @@ class _CustomTextFormFieldInitialValue
           borderSide: const BorderSide(color: Colors.red),
           borderRadius: BorderRadius.circular(widget.borderRadious),
         ),
+        prefixIcon: _buildPrefix(),
         suffixIcon: widget.isPassword
             ? IconButton(
           icon: Icon(
@@ -407,6 +429,64 @@ class _CustomTextFormFieldInitialValue
 
         return null; // ✅ All validations passed
       },
+    );
+  }
+
+
+  Widget? _buildPrefix() {
+    // agar prefix image aur text dono null hain to kuch mat dikhana
+    if (widget.prefixImage == null && widget.prefixText == null) return null;
+
+    List<Widget> children = [];
+
+    // 🖼️ prefix image handling (ab margin se control hoga)
+    if (widget.prefixImage != null) {
+      Widget imageWidget;
+
+      switch (widget.prefixType) {
+        case PrefixImageType.svg:
+          imageWidget = Container(
+            margin:  EdgeInsets.only(left: widget.prefixPadding, right: widget.prefixPadding), // ✅ image ke pehle aur baad space
+            child: SvgPicture.asset(
+              widget.prefixImage!,
+              width: widget.prefixImageSize,
+              height: widget.prefixImageSize,
+            ),
+          );
+          break;
+
+        case PrefixImageType.png:
+          imageWidget = Container(
+            margin:  EdgeInsets.only(left: widget.prefixPadding, right: 8), // ✅ image ke pehle aur baad space
+            child: Image.asset(
+              widget.prefixImage!,
+              width: widget.prefixImageSize,
+              height: widget.prefixImageSize,
+            ),
+          );
+          break;
+
+        case PrefixImageType.none:
+          return null;
+      }
+
+      children.add(imageWidget);
+    }
+
+    // 🔤 prefix text handling (no padding here)
+    if (widget.prefixText != null) {
+      children.add(
+        Text(
+          widget.prefixText!,
+          style: widget.prefixTextStyle ??
+              const TextStyle(fontSize: 16, color: Colors.black87),
+        ),
+      );
+    }
+
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: children,
     );
   }
 
