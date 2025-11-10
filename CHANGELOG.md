@@ -1,3 +1,6 @@
+## 0.2.0
+- set prefix icon with their text 
+
 ## 0.1.9
 - set params readyOnly feature (its a system default feature TextFormField)
 ## 0.1.8

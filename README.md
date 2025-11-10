@@ -21,6 +21,8 @@ A customizable Flutter TextFormField widget with built-in validation and suffix 
 ✅ BankAccountType Validation
 ✅ Email Validation
 ✅ DOB Validation
+✅ adding prefixIcon with prefix text like mobile number with country flag
+
 
 
 
